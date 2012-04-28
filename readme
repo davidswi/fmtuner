@@ -1,0 +1,8 @@
+FMTuner -- An HTML FM tuner application
+=======================================
+FMTuner is an exploration of HMTL UI with Javascript backing logic that communicates with an Si470x FM tuner IC connected to a Linux system via USB. The Javascript code uses the FMTuner object to open a connection to the tuner hardware, enumerate available stations and tune to a requested station. The FMTuner object is a native WebKit Javascript extension that is implemented according to the procedure described in this Use(less) Bytes blog posting:
+
+http://uselessbyte.blogspot.com/2009/12/adding-custom-javascript-bindings-to.html
+
+The FMTuner C implementation talks to the radio-usb-si470x driver via the user mode interface demonstrated in the test app fmtools, located at http://www.stanford.edu/~blp/fmtools/
+
