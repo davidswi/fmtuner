@@ -58,20 +58,20 @@ struct fmdriver_event
 // Driver open/close
 // On open, the client provides a pthread condition variable for receiving callbacks on
 // If the condition callback is NULL, all requests will block until complete.
-int fmdriverif_open(int tuner_id, pthread_cond_t *callback_cond, int *if_handle_ptr);
-int fmdriverif_close(int if_handle);
+int fmdriverif_open(int tuner_id, pthread_cond_t *callback_cond, unsigned long *if_handle_ptr);
+int fmdriverif_close(unsigned long if_handle);
 
 // Driver requests -- async unless the interface was opened with a NULL condition variable
-int fmdriverif_powerrequest(int if_handle, enum fmdriver_power_state req_state);
-int fmdriverif_tunerequest(int if_handle, int tune_freq);
-int fmdriverif_seekrequest(int if_handle, bool seek_up);
-int fmdriverif_scanrequest(int if_handle, bool stop_scan);
-int fmdriverif_volrequest(int if_handle, int vol_level); // 0-100
+int fmdriverif_powerrequest(unsigned long if_handle, enum fmdriver_power_state req_state);
+int fmdriverif_tunerequest(unsigned long if_handle, int tune_freq);
+int fmdriverif_seekrequest(unsigned long if_handle, bool seek_up);
+int fmdriverif_scanrequest(unsigned long if_handle, bool stop_scan);
+int fmdriverif_volrequest(unsigned long if_handle, int vol_level); // 0-100
 
 // Event data access -- reads the next event from the event FIFO. Typically, the client will 
 // have a worker thread that waits until its condition variable is signalled, then calls this
 // function to retrieve the event data
-int fmdriverif_read_event(int if_handle, struct fmdriver_event *event);
+int fmdriverif_read_event(unsigned long if_handle, struct fmdriver_event *event);
 
 #endif
 
